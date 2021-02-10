@@ -16,7 +16,7 @@ public class SmileyRunner {
 		j.add(p);
 		// 7. Set the Smiley class's color variable to Smiley.YELLOW (NOT a specific smiley object's!)
 		// Run it again; are your Smileys all yellow now? Also try changing them to red or green!
-		Smiley.setColor("green");
+		Smiley.setColor("yellow");
 		// 4. Make three Smiley objects and add them to your panel
 		Smiley smile1 = new Smiley();
 		Smiley smile2 = new Smiley();

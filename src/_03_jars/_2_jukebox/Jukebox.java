@@ -5,6 +5,8 @@ package _03_jars._2_jukebox;
  */
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -12,7 +14,10 @@ import java.net.URL;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import javazoom.jl.player.advanced.AdvancedPlayer;
@@ -20,15 +25,18 @@ import javazoom.jl.player.advanced.AdvancedPlayer;
 /*   If you don't have javazoom.jar in your project, you can download it from here: http://bit.ly/javazoom
  *   Right click your project and add it as a JAR (Under Java Build Path > Libraries).*/
 
-public class Jukebox implements Runnable {
-
+public class Jukebox implements Runnable, ActionListener{
+	Song song = new Song("");
+	JButton b1 = new JButton("Ode to Joy");
+	JButton b2 = new JButton("Turkish March");
+	JButton b3 = new JButton("Fur elise");
     public void run() {
 
 		// 1. Find an mp3 on your computer or on the Internet.
 		// 2. Create a Song object for that mp3
-
+    	
 		// 3. Play the Song
-
+    
 		/*
 		 * 4. Create a user interface for your Jukebox so that the user can to
 		 * choose which song to play. You can use can use a different button for
@@ -36,6 +44,17 @@ public class Jukebox implements Runnable {
 		 * cover is clicked, stop the currently playing song, and play the one
 		 * that was selected.
 		 */
+    	JFrame j = new JFrame("Jukebox");
+    	JPanel p = new JPanel();
+    	
+    	j.add(p);
+    	p.add(b1);
+    	p.add(b2);
+    	p.add(b3);
+    	b1.addActionListener(this);
+    	b2.addActionListener(this);
+    	b3.addActionListener(this);
+    	j.setVisible(true);
     }
     
     
@@ -44,6 +63,25 @@ public class Jukebox implements Runnable {
 		URL imageURL = getClass().getResource(fileName);
 		Icon icon = new ImageIcon(imageURL);
 		return new JLabel(icon);
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		song.stop();
+		if (e.getSource() == b1) {
+			song = new Song("https://www.mfiles.co.uk/mp3-downloads/beethoven-symphony9-4-ode-to-joy-piano-solo.mp3");
+			song.play();
+		}else if(e.getSource() == b2) {
+			 song = new Song("https://www.mfiles.co.uk/mp3-downloads/alla-turca.mp3");
+			song.play();
+		}else if(e.getSource() == b3) {
+			 song = new Song("https://www.mfiles.co.uk/mp3-downloads/fur-elise.mp3");
+			song.play();
+		}
+			
+		
 	}
 
 }
