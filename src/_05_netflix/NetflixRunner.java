@@ -9,6 +9,11 @@ public class NetflixRunner {
 		Movie m5 = new Movie("Iron Man 3", 5);
 		System.out.println(m1.getTicketPrice());
 		NetflixQueue n = new NetflixQueue();
+		n.addMovie(m1);
+		n.addMovie(m2);
+		n.addMovie(m3);
+		n.addMovie(m4);
+		n.addMovie(m5);
 		n.printMovies();
 		n.sortMoviesByRating();
 	}
